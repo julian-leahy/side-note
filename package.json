@@ -12,6 +12,23 @@
   "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "SideNote",
+          "title": "Side Notes",
+          "icon": "media/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "SideNote": [
+        {
+          "id": "SideNoteView",
+          "name": "Side Note View"
+        }
+      ]
+    },
     "commands": [
       {
         "command": "side-note.helloWorld",
