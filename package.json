@@ -62,7 +62,7 @@
     "commands": [
       {
         "command": "sideNote.createFile",
-        "title": "Create File",
+        "title": "Create New Side Note",
         "icon": {
           "light": "resources/light/create.svg",
           "dark": "resources/dark/create.svg"
@@ -70,7 +70,7 @@
       },
       {
         "command": "sideNote.deleteFile",
-        "title": "Delete File",
+        "title": "Delete Side Note",
         "icon": {
           "light": "resources/light/trash.svg",
           "dark": "resources/dark/trash.svg"
@@ -78,7 +78,7 @@
       },
       {
         "command": "sideNote.refreshView",
-        "title": "Refresh View",
+        "title": "Refresh Side Notes",
         "icon": {
           "light": "resources/light/refresh.svg",
           "dark": "resources/dark/refresh.svg"
