@@ -19,7 +19,7 @@
       "properties": {
         "storage.path": {
           "type": "string",
-          "default": "/",
+          "default": "",
           "description": "Path to the directory for all notes."
         }
       }
