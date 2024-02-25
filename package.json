@@ -1,7 +1,9 @@
 {
   "name": "side-note",
   "displayName": "Side Note",
-  "description": "todo",
+  "description": "Access commonly used files in your editor",
+  "publisher": "WildBytes",
+  "icon": "icon.jpeg",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.86.0"
