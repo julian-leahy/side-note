@@ -12,6 +12,16 @@
   "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
+    "configuration": {
+      "title": "Sub Scribe",
+      "properties": {
+        "storage.path": {
+          "type": "string",
+          "default": "/Users/home/Projects/SubScribe",
+          "description": "Path to the directory for all notes."
+        }
+      }
+    },
     "viewsContainers": {
       "activitybar": [
         {
@@ -29,10 +39,49 @@
         }
       ]
     },
+    "menus": {
+      "view/title": [
+        {
+          "command": "subScribe.createFile",
+          "group": "navigation",
+          "when": "view == SideNoteView"
+        },
+        {
+          "command": "subScribe.deleteFile",
+          "group": "navigation",
+          "when": "view == SideNoteView"
+        },
+        {
+          "command": "subScribe.refreshView",
+          "group": "navigation",
+          "when": "view == SideNoteView"
+        }
+      ]
+    },
     "commands": [
       {
-        "command": "side-note.helloWorld",
-        "title": "Hello World"
+        "command": "subScribe.createFile",
+        "title": "Create File",
+        "icon": {
+          "light": "resources/light/create.svg",
+          "dark": "resources/dark/create.svg"
+        }
+      },
+      {
+        "command": "subScribe.deleteFile",
+        "title": "Delete File",
+        "icon": {
+          "light": "resources/light/trash.svg",
+          "dark": "resources/dark/trash.svg"
+        }
+      },
+      {
+        "command": "subScribe.refreshView",
+        "title": "Refresh View",
+        "icon": {
+          "light": "resources/light/refresh.svg",
+          "dark": "resources/dark/refresh.svg"
+        }
       }
     ]
   },
