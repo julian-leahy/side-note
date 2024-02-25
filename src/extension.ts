@@ -106,6 +106,10 @@ export function activate(context: vscode.ExtensionContext) {
 
     vscode.commands.registerCommand("extension.openFile", async (uri) => {
       const document = await vscode.workspace.openTextDocument(uri);
+      if (!document) {
+        vscode.window.showErrorMessage("Failed to open file 🙊");
+        return;
+      }
       await vscode.window.showTextDocument(document);
     })
   );

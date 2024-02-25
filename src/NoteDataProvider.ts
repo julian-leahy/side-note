@@ -48,9 +48,13 @@ class NoteDataProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
     return files
       .filter((file) => {
         const ext = path.extname(file).toLowerCase();
+        const isDirectory = fs
+          .statSync(path.join(this.noteDir, file))
+          .isDirectory();
         return (
           !file.startsWith(".") &&
-          ![".png", ".jpeg", ".webp", ".jpg"].includes(ext)
+          ![".png", ".jpeg", ".webp", ".jpg"].includes(ext) &&
+          !isDirectory
         );
       })
       .sort((a, b) => {
