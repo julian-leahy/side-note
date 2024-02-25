@@ -55,6 +55,11 @@
           "when": "view == SideNoteView"
         },
         {
+          "command": "sideNote.renameFile",
+          "group": "navigation",
+          "when": "view == SideNoteView"
+        },
+        {
           "command": "sideNote.refreshView",
           "group": "navigation",
           "when": "view == SideNoteView"
@@ -76,6 +81,14 @@
         "icon": {
           "light": "resources/light/trash.svg",
           "dark": "resources/dark/trash.svg"
+        }
+      },
+      {
+        "command": "sideNote.renameFile",
+        "title": "Rename Side Note",
+        "icon": {
+          "light": "resources/light/rename.svg",
+          "dark": "resources/dark/rename.svg"
         }
       },
       {

@@ -111,6 +111,49 @@ export function activate(context: vscode.ExtensionContext) {
         return;
       }
       await vscode.window.showTextDocument(document);
+    }),
+
+    vscode.commands.registerCommand("sideNote.renameFile", async () => {
+      if (!selectedFile) {
+        vscode.window.showErrorMessage("No file selected 🙊");
+        return;
+      }
+      let file = selectedFile as vscode.TreeItem;
+
+      const uri = file.resourceUri as vscode.Uri;
+      const oldFileName = path.basename(uri.fsPath);
+
+      let newFileName = await vscode.window.showInputBox({
+        prompt: "Enter the new name for the note",
+        value: oldFileName,
+      });
+      if (!newFileName) {
+        return;
+      }
+      newFileName = ensureFileExtension(newFileName);
+      const newFilePath = path.join(noteDir, `${newFileName}`);
+      const newFileUri = vscode.Uri.file(newFilePath);
+      if (!ensureFileIsUnique(newFileUri.fsPath)) {
+        return;
+      }
+      // rename the file
+      fs.renameSync(uri.fsPath, newFileUri.fsPath);
+
+      // close the old file if it's open
+      for (const doc of vscode.workspace.textDocuments) {
+        if (doc.uri.fsPath === uri.fsPath) {
+          await vscode.commands.executeCommand(
+            "workbench.action.closeActiveEditor"
+          );
+          break;
+        }
+      }
+
+      // open the renamed file
+      vscode.commands.executeCommand("vscode.open", newFileUri);
+
+      // refresh to show new tree item (file)
+      noteDataProvider.refresh();
     })
   );
 }
