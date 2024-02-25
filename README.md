@@ -16,6 +16,7 @@ Side Note allows you to access commonly used files in your editor. Ideal for not
 2. Press `Ctrl+P` to open the Quick Open dialog
 3. Type `ext install your-extension-id` to install the extension
 4. Press `Enter` to execute the command
+5. Set storage path in settings
 
 ## License
 

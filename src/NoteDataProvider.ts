@@ -39,7 +39,7 @@ class NoteDataProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
   ): vscode.ProviderResult<vscode.TreeItem[]> {
     // check the dir to where the notes will be stored exists!
     if (!fs.existsSync(this.noteDir)) {
-      vscode.window.showInformationMessage("Note directory does not exist.");
+      vscode.window.showInformationMessage("Set the storage path in settings!");
       return Promise.resolve([]);
     }
 

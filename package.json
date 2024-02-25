@@ -15,11 +15,11 @@
   "main": "./dist/extension.js",
   "contributes": {
     "configuration": {
-      "title": "Sub Scribe",
+      "title": "Side Note",
       "properties": {
         "storage.path": {
           "type": "string",
-          "default": "/Users/home/Projects/Notes",
+          "default": "/",
           "description": "Path to the directory for all notes."
         }
       }
