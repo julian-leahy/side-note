@@ -55,13 +55,15 @@
           "when": "view == SideNoteView"
         },
         {
-          "command": "sideNote.renameFile",
-          "group": "navigation",
-          "when": "view == SideNoteView"
-        },
-        {
           "command": "sideNote.refreshView",
           "group": "navigation",
+          "when": "view == SideNoteView"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "sideNote.renameFile",
+          "group": "1_modification",
           "when": "view == SideNoteView"
         }
       ]
@@ -85,11 +87,7 @@
       },
       {
         "command": "sideNote.renameFile",
-        "title": "Rename Side Note",
-        "icon": {
-          "light": "resources/light/rename.svg",
-          "dark": "resources/dark/rename.svg"
-        }
+        "title": "Rename Side Note"
       },
       {
         "command": "sideNote.refreshView",
