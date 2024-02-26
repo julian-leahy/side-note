@@ -50,11 +50,6 @@
           "when": "view == SideNoteView"
         },
         {
-          "command": "sideNote.deleteFile",
-          "group": "navigation",
-          "when": "view == SideNoteView"
-        },
-        {
           "command": "sideNote.refreshView",
           "group": "navigation",
           "when": "view == SideNoteView"
@@ -63,6 +58,11 @@
       "view/item/context": [
         {
           "command": "sideNote.renameFile",
+          "group": "1_modification",
+          "when": "view == SideNoteView"
+        },
+        {
+          "command": "sideNote.deleteFile",
           "group": "1_modification",
           "when": "view == SideNoteView"
         }
@@ -79,11 +79,7 @@
       },
       {
         "command": "sideNote.deleteFile",
-        "title": "Delete Side Note",
-        "icon": {
-          "light": "resources/light/trash.svg",
-          "dark": "resources/dark/trash.svg"
-        }
+        "title": "Delete Note"
       },
       {
         "command": "sideNote.renameFile",

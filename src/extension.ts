@@ -64,45 +64,42 @@ export function activate(context: vscode.ExtensionContext) {
       noteDataProvider.refresh();
     }),
 
-    vscode.commands.registerCommand("sideNote.deleteFile", async () => {
-      if (!selectedFile) {
-        vscode.window.showErrorMessage("No file selected 🙊");
-        return;
-      }
-      let file = selectedFile as vscode.TreeItem;
+    vscode.commands.registerCommand(
+      "sideNote.deleteFile",
+      async (file: vscode.TreeItem) => {
+        const uri = file.resourceUri as vscode.Uri;
+        const fileName = path.basename(uri.fsPath);
 
-      const uri = file.resourceUri as vscode.Uri;
-      const fileName = path.basename(uri.fsPath);
+        const confirm = await vscode.window.showWarningMessage(
+          `Are you sure you want to delete "${fileName}"?`,
+          { modal: true },
+          "Yes",
+          "No"
+        );
 
-      const confirm = await vscode.window.showWarningMessage(
-        `Are you sure you want to delete "${fileName}"?`,
-        { modal: true },
-        "Yes",
-        "No"
-      );
-
-      if (confirm === "Yes") {
-        try {
-          fs.unlinkSync(uri.fsPath);
-          vscode.window.showInformationMessage("File deleted successfully.");
-          noteDataProvider.refresh();
-          // if deleted file was open in text editor - remove it
-          for (const doc of vscode.workspace.textDocuments) {
-            if (doc.uri.fsPath === uri.fsPath) {
-              await vscode.commands.executeCommand(
-                "workbench.action.closeActiveEditor"
-              );
-              break;
+        if (confirm === "Yes") {
+          try {
+            fs.unlinkSync(uri.fsPath);
+            vscode.window.showInformationMessage("File deleted successfully.");
+            noteDataProvider.refresh();
+            // if deleted file was open in text editor - remove it
+            for (const doc of vscode.workspace.textDocuments) {
+              if (doc.uri.fsPath === uri.fsPath) {
+                await vscode.commands.executeCommand(
+                  "workbench.action.closeActiveEditor"
+                );
+                break;
+              }
             }
+          } catch (error) {
+            const errorMessage = `Failed to delete file: ${
+              (error as Error).message
+            }`;
+            vscode.window.showErrorMessage(errorMessage);
           }
-        } catch (error) {
-          const errorMessage = `Failed to delete file: ${
-            (error as Error).message
-          }`;
-          vscode.window.showErrorMessage(errorMessage);
         }
       }
-    }),
+    ),
 
     vscode.commands.registerCommand("extension.openFile", async (uri) => {
       const document = await vscode.workspace.openTextDocument(uri);
